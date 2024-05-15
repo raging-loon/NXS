@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cassert>
 
+// 0.5 second timeout
 constexpr struct timeval timeout = {.tv_sec = 0, .tv_usec = 500000};
 
 bool scanner::scanSinglePort(std::uint32_t ip, std::uint16_t port)
@@ -34,7 +35,7 @@ bool scanner::scanSinglePort(std::uint32_t ip, std::uint16_t port)
     }
 
     if(connect(sockfd, (const sockaddr*)&in, sizeof(sockaddr_in)) == 0)
-        status = true;
+        status = true; // It's open!
 
     close(sockfd);  
     return status;
